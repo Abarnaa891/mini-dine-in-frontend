@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { reportsApi } from '../../api/reports.api';
-import Layout from '../../components/Layout';
-import '../../styles/admin.css';
-import '../../styles/reports.css';
+import { reportsApi } from '../api/reports.api';
+import Layout from '../components/Layout';
+import '../styles/admin.css';
+import '../styles/reports.css';
 
 export default function AdminReportsPage() {
   const [from, setFrom] = useState('');
