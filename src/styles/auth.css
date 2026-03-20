@@ -1,0 +1,69 @@
+.auth-root { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+@media (max-width: 768px) { .auth-root { grid-template-columns: 1fr; } }
+
+.auth-left {
+  background: var(--brown-deep); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 3rem 2rem;
+  position: relative; overflow: hidden;
+}
+.auth-left::before, .auth-left::after {
+  content: ''; position: absolute; border-radius: 50%;
+  border: 2px solid rgba(200,115,42,0.18); pointer-events: none;
+}
+.auth-left::before { width: 420px; height: 420px; bottom: -120px; right: -120px; }
+.auth-left::after  { width: 260px; height: 260px; top: -60px;   left: -60px;  }
+.auth-deco { position: absolute; width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,115,42,0.12) 0%, transparent 70%);
+  bottom: 10%; right: 10%; pointer-events: none; }
+
+.auth-brand { text-align: center; z-index: 1; animation: fadeUp 0.7s ease both; }
+.auth-logo  { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+.auth-title { font-family: var(--font-display); font-size: 3rem; font-weight: 600; color: var(--cream); margin-bottom: 0.5rem; }
+.auth-tagline { font-family: var(--font-display); font-style: italic; font-size: 1.1rem; color: var(--amber-light); }
+
+.auth-right { display: flex; align-items: center; justify-content: center; padding: 2rem 1.5rem; }
+.auth-card  { width: 100%; max-width: 420px; animation: fadeUp 0.6s 0.1s ease both; }
+.auth-card--register { max-width: 480px; }
+
+.auth-card-header { margin-bottom: 2rem; }
+.auth-card-header h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 600; margin-bottom: 0.3rem; }
+.auth-card-header p  { font-size: 0.95rem; color: var(--muted); font-weight: 300; }
+
+.auth-form  { display: flex; flex-direction: column; gap: 1.2rem; }
+.auth-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 520px) { .auth-row { grid-template-columns: 1fr; } }
+
+.auth-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.auth-field label { font-size: 0.82rem; font-weight: 700; color: var(--brown-mid); letter-spacing: 0.5px; text-transform: uppercase; }
+.auth-optional { font-weight: 400; text-transform: none; color: var(--muted); font-size: 0.78rem; }
+.auth-field input {
+  width: 100%; padding: 0.8rem 1rem; border: 1.5px solid var(--border); border-radius: var(--radius);
+  background: #fff; font-family: var(--font-body); font-size: 0.95rem; color: var(--brown-deep);
+  transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.auth-field input::placeholder { color: #c4b5a5; }
+.auth-field input:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(200,115,42,0.15); }
+.auth-field-error { font-size: 0.78rem; color: var(--error); }
+
+.auth-error { background: #fdf0ee; border: 1px solid #f5c2bb; border-radius: var(--radius);
+  padding: 0.75rem 1rem; font-size: 0.875rem; color: var(--error); text-align: center; }
+
+.auth-btn {
+  width: 100%; padding: 0.9rem; background: var(--brown-deep); color: var(--cream);
+  border: none; border-radius: var(--radius); font-size: 0.95rem; font-weight: 700;
+  letter-spacing: 0.5px; transition: background 0.2s, transform 0.2s;
+  display: flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 0.4rem;
+}
+.auth-btn:hover:not(:disabled) { background: var(--brown-warm); }
+.auth-btn:active:not(:disabled) { transform: scale(0.98); }
+.auth-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.auth-spinner { width: 20px; height: 20px; border: 2.5px solid rgba(253,246,236,0.3);
+  border-top-color: var(--cream); border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
+
+.auth-switch { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: var(--muted); }
+.auth-switch a { color: var(--amber); font-weight: 700; transition: color 0.2s; }
+.auth-switch a:hover { color: var(--terracotta); text-decoration: underline; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }

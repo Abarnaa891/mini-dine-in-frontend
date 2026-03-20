@@ -1,0 +1,42 @@
+.delivery-page h1 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 1.5rem; }
+.delivery-section { margin-bottom: 2.5rem; }
+.delivery-section h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.delivery-count { background: var(--brown-deep); color: var(--cream); font-size: 0.78rem;
+  font-weight: 700; border-radius: 10px; padding: 1px 8px; font-family: var(--font-body); }
+
+.delivery-list { display: flex; flex-direction: column; gap: 1rem; }
+
+.delivery-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; }
+.delivery-card--done { opacity: 0.75; border-style: dashed; }
+
+.delivery-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.delivery-order-id  { font-weight: 700; font-size: 1rem; }
+.delivery-status    { font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.75rem;
+  border-radius: 20px; background: #fdf2e9; color: #935116; }
+.delivery-status--done { background: #eafaf1; color: #196f3d; }
+
+.delivery-customer { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.9rem; }
+.delivery-customer strong { font-weight: 700; }
+.delivery-customer span   { color: var(--muted); font-size: 0.85rem; }
+
+.delivery-addr  { font-size: 0.85rem; color: var(--brown-mid); margin-bottom: 0.75rem; }
+
+.delivery-items { list-style: none; display: flex; flex-direction: column; gap: 0.3rem;
+  margin-bottom: 0.75rem; padding: 0.75rem; background: var(--cream); border-radius: var(--radius); }
+.delivery-items li { display: flex; gap: 0.75rem; font-size: 0.88rem; }
+.delivery-items li span:first-child { font-weight: 700; color: var(--brown-mid); }
+
+.delivery-card-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem;
+  border-top: 1px solid var(--border); }
+.delivery-total   { font-weight: 700; font-size: 1rem; }
+.delivery-done-btn { background: #27ae60; color: #fff; border: none;
+  padding: 0.55rem 1.25rem; border-radius: 8px; font-size: 0.88rem; font-weight: 700;
+  transition: background 0.15s; }
+.delivery-done-btn:hover:not(:disabled) { background: #1e8449; }
+.delivery-done-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.delivery-empty    { text-align: center; padding: 3rem; color: var(--muted); }
+.delivery-empty span { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+.delivery-empty-sm { color: var(--muted); font-size: 0.9rem; padding: 1rem 0; }
+.delivery-loading  { color: var(--muted); padding: 2rem 0; }
