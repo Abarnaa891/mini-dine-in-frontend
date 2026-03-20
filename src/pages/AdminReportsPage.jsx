@@ -10,11 +10,79 @@ const STATUS_COLORS = {
   PREPARING:        '#f39c12',
   READY:            '#27ae60',
   OUT_FOR_DELIVERY: '#e67e22',
-  DELIVERED:        '#2ecc71',
-  CANCELLED:        '#e74c3c',
+  DELIVERED:        '#00e15e',
+  CANCELLED:        '#ff1900',
 };
 
 const CAT_COLORS = ['#c8732a','#8b4513','#5c3317','#e8935a','#b85c38','#2c1a0e'];
+
+
+function AreaChart({ data }) {
+  const W = 700, H = 200, PX = 40, PY = 20;
+  const maxRev = Math.max(...data.map((d) => d.revenue), 1);
+  const points = data.map((d, i) => ({
+    x: PX + (i / (data.length - 1 || 1)) * (W - PX * 2),
+    y: PY + (1 - d.revenue / maxRev) * (H - PY * 2),
+    ...d,
+  }));
+
+  const linePath = points
+    .map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`)
+    .join(' ');
+
+  const areaPath =
+    linePath +
+    ` L ${points[points.length - 1].x.toFixed(1)} ${H - PY}` +
+    ` L ${points[0].x.toFixed(1)} ${H - PY} Z`;
+
+  return (
+    <div className="area-chart-wrap">
+      <svg viewBox={`0 0 ${W} ${H}`} className="area-chart-svg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#c8732a" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#c8732a" stopOpacity="0.02" />
+          </linearGradient>
+        </defs>
+        {/* Grid lines */}
+        {[0.25, 0.5, 0.75, 1].map((t) => {
+          const gy = PY + (1 - t) * (H - PY * 2);
+          return (
+            <line key={t} x1={PX} y1={gy} x2={W - PX} y2={gy}
+              stroke="#dfd0bc" strokeWidth="1" strokeDasharray="4 4" />
+          );
+        })}
+        {/* Area fill */}
+        <path d={areaPath} fill="url(#areaGrad)" />
+        {/* Line */}
+        <path d={linePath} fill="none" stroke="#c8732a" strokeWidth="2.5"
+          strokeLinecap="round" strokeLinejoin="round" />
+        {/* Dots */}
+        {points.map((p) => (
+          <g key={p.date} className="area-dot-group">
+            <circle cx={p.x} cy={p.y} r="4" fill="#c8732a" stroke="#fff" strokeWidth="2" />
+            <rect x={p.x - 44} y={p.y - 46} width="88" height="38" rx="6"
+              fill="#2c1a0e" className="area-tip-bg" />
+            <text x={p.x} y={p.y - 30} textAnchor="middle"
+              fill="#fdf6ec" fontSize="11" fontWeight="700" className="area-tip-val">
+              ₹{p.revenue.toFixed(0)}
+            </text>
+            <text x={p.x} y={p.y - 16} textAnchor="middle"
+              fill="#e8935a" fontSize="10" className="area-tip-ord">
+              {p.orders} order{p.orders !== 1 ? 's' : ''}
+            </text>
+          </g>
+        ))}
+      </svg>
+      {/* X labels */}
+      <div className="area-x-labels">
+        {points.map((p) => (
+          <span key={p.date} className="area-x-label">{p.date.slice(5)}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function AdminReportsPage() {
   const [from, setFrom] = useState('');
@@ -144,7 +212,7 @@ export default function AdminReportsPage() {
 
           {/* Order status breakdown — progress bars */}
           <div className="report-widget">
-            <h2>Order status breakdown</h2>
+            <h2>Order status </h2>
             {breakdown.length === 0 ? (
               <p className="widget-empty">No orders yet.</p>
             ) : (

@@ -88,3 +88,25 @@
 .driver-name    { font-size: 0.9rem; font-weight: 700; color: var(--brown-deep); }
 .driver-meta    { font-size: 0.78rem; color: var(--muted); }
 .driver-revenue { font-size: 0.95rem; font-weight: 700; color: var(--amber); }
+
+/* ── Area chart ── */
+.rpt-chart-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; }
+.rpt-chart-head h2 { margin-bottom: 0; }
+.rpt-chart-sub { font-size: 0.82rem; color: var(--muted); }
+
+.area-chart-wrap { display: flex; flex-direction: column; gap: 0; }
+.area-chart-svg  { width: 100%; height: 200px; overflow: visible; }
+
+/* Dots — tooltip only visible on hover */
+.area-dot-group .area-tip-bg,
+.area-dot-group .area-tip-val,
+.area-dot-group .area-tip-ord { opacity: 0; transition: opacity 0.15s; pointer-events: none; }
+.area-dot-group:hover .area-tip-bg,
+.area-dot-group:hover .area-tip-val,
+.area-dot-group:hover .area-tip-ord { opacity: 1; }
+.area-dot-group circle { transition: r 0.15s; cursor: pointer; }
+.area-dot-group:hover circle { r: 6; }
+
+/* X axis labels */
+.area-x-labels { display: flex; justify-content: space-between; padding: 4px 40px 0; }
+.area-x-label  { font-size: 0.66rem; color: var(--muted); text-align: center; flex: 1; }
